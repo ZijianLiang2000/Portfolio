@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   root "personal_portfolios#home"
   get "projects" => "personal_portfolios#projects"
   get "resume" => "personal_portfolios#resume"
+  get "loreco" => "personal_portfolios#loreco"
+  get "chatbot" => "personal_portfolios#chatbot"
+  get "contest_project" => "personal_portfolios#contest_project"
+  get "eeg" => "personal_portfolios#eeg"
+  get "fitness_app" => "personal_portfolios#fitness_app"
 end
