@@ -1,0 +1,52 @@
+// Place all the styles related to the Personal_portfolios controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+
+html,
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#app{
+    width: 400px;
+    height: 100vh;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1,h3{
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+a.nav-link.home{
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(93, 151, 206);
+    overflow: hidden;
+    background: linear-gradient(to right, rgb(246, 246, 246), rgb(232, 232, 232) 50%, rgb(255, 255, 255) 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: 0.2s;
+}
+
+a.nav-link.home:hover{
+    font-size: 21px;
+    font-weight: 530;
+    background-position: 0 50%;
+}

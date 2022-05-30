@@ -1,0 +1,19 @@
+%h1 Listing personal_portfolios
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @personal_portfolios.each do |personal_portfolio|
+      %tr
+        %td= link_to 'Show', personal_portfolio
+        %td= link_to 'Edit', edit_personal_portfolio_path(personal_portfolio)
+        %td= link_to 'Destroy', personal_portfolio, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Personal portfolio', new_personal_portfolio_path

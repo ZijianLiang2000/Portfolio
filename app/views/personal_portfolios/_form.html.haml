@@ -1,0 +1,10 @@
+= form_for @personal_portfolio do |f|
+  - if @personal_portfolio.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@personal_portfolio.errors.count, "error")} prohibited this personal_portfolio from being saved:"
+      %ul
+        - @personal_portfolio.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'
