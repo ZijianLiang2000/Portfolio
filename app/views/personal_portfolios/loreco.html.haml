@@ -1,9 +1,14 @@
 %body
     -# Navigation labels
     .home_content{:style => "color: black; margin: auto;width: 100%;padding: 10px;"}
+        
         .card#card_select{:style => "color: black;margin: auto;padding: 10px;width: 90%; height: 100%;"}
             .card-body    
-                %h4 LORECO
+                %h4
+                    LORECO
+                    -# Button to github
+                    %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://github.com/ZijianLiang2000/COM3001_FinalYearProject'", :target => "_blank", :style => 'z-index: 2;position: relative;' }
+                        %i.bi.bi-github
                 %p
                     Location Recommendation System for Restaurant Business Location Decision-Making in England and Wales: Hierarchal Recommendation System for Restaurant Business Location Decision-Making
                     in England and Wales: 
@@ -13,4 +18,153 @@
                     planned restaurant business with factors of supply and demand of market, geo-demographic and business competition
                     and agglomeration approaches of restaurant segments in UK areas (LAD, LSOA) in macro and micro map scopes
                     through data retrieval, analysis, calculation and visualization to provide quantified comparability on successfulness of
-                    areas for user restaurant options and insights on their correlations with neighboring featured places
+                    areas for user restaurant options and insights on their correlations with neighboring featured places.
+                    %br
+                    %br
+                    With the recovery of demands for restaurant industry in the United Kingdom after gradually unleashing restrictions combining with policies stimulating consumptions and retaliatory consumption from customers, the comeback of market trend of opening up new restaurants has taken place.
+
+                    As the factors influencing successfulness of a restaurant related to its location being researched and proposed by numerous supporting evidences and methodologies, as well as the absence of software platforms supporting recommendation of a restaurant location for a large scope of areas in current market, this project would propose and implement a web application that assists user’s decision-making progress of selecting a location in England and Wales to open up a restaurant with customisable options and preferences.
+
+                    The application features hierarchal recommendation progress providing map views from the macro to micro scope, which collects user inputs regarding restaurant category and other attributes for establishment of restaurant. They would then be dynamically influencing the importance of multiple perspectives regarding geographic, demo-geographic, figures of diverted restaurant category factors calculating the comprehensive recommendation score for each location. This recommendation progress would be repeated for macro scopes and the strategy of restaurant agglomeration would generate the clustering of restaurants neighbours with the optimal recommendation score within the minor map scopes. With the additional support of nearby featured location for the final location selection, the spatial relationship between a selected location and surrounding locations of interests would be revealed featuring the popularity, quality and price segment being unveiled for a location selection.
+                    %br
+                    %br
+                    The sequence of map scope for recommendation progress from macro to micro is: User Options => LAD scope => LSOA in selected LAD scope => Restaurant Clusters in selected LSOA scope => Restaurant Location in selected Cluster scope.
+
+        .row.row-cols-1.row-cols-md-2.g-4{:style => "width: 90%; position: relative;margin: auto;"}
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative;"}
+                    %a{:href => "https://i.postimg.cc/5tWrLrmf/User-Option.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/5tWrLrmf/User-Option.png",:style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title User options and preferences for restaurant
+                        %p
+                            The user option and preference selections can allow user to select attributes for planned restaurant establishment: Restaurant Category, Restaurant Price Segment, Restaurant Food Acceptance to Customers, Rent Acceptance Interval.
+                            %br
+                            %br
+                            These variables can allow the system to extract the restaurant's potential performance under existing market of current category in different areas, considering socio-demographic and agglomeration patterns, to combine with the market competition factor,
+                            resulting in a risk level for the proposed restaurant attributes in general.
+                            %br
+                            %br
+                            The rent acceptance interval would be a range of maximum rent value the user accepts for an area, if an area's rent price is within the interval, then the negative weight for the
+                            rent factor (influencing the resulting recommendation value) would increase, leading to a lower score than before. If an area's rent price exceeds the maximum value of the acceptance interval, then the weight would profoundly increase, leading to the area
+                            totally not recommendable.
+                            %br
+                            %br
+                            This view would influence weight for the each ethnicity being counted in an area (White, Black, Asian, Mixed, Others), so that a selected restaurant category would escalate the weight for the customers of corresponding ethnic origin. In addition, it would also
+                            affect the weight of each restaurant category's density in an area. Eg: If Japanese Restaurant is chosen, then weight for "Asian" and "Japanese Restaurant Density in Area" would be increased, resulting in higher importance for these two weights, in such matter,
+                            area with comparatively higher Asian population percentage and Japanese restaurant density in the area would be recommended under the pre-requisites of other factor values and weights being identical. It would also result in a location strategy: either Agglomeration or Diffusion with same category restaurants.
+                            Which would also affect the weightings for direct and indirect competitor restaurant density in area.
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/28TGBPjr/LAD-map.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/28TGBPjr/LAD-map.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Local Authority District (LAD) Map Scope Level Recommendation
+                        %p
+                            The LAD map scope (2020 Edition) contains 374 local authority districts (LAD) and unitary authorities (UA) in the United Kingdom, while for the recommendation system, only England and Wales would be taken into account.
+                            %br
+                            %br
+                            This view would take into consideration the data regarding: Population Density, Income, Restaurant Industry Employment, Median House Price, Median Weekly Rent, Asian Percentage, Black Percentage, White Percentage, Mixed Percentage, Other Ethnic Percentage,
+                            Each Restaurant Category's Density (Same Category and Different Category) and Employment Rate of each LAD. There would be a recommendation formula that takes in all factors with unique weights and perform a weighted average calculation to result in a recommendation value for each area.
+                            Data related to each factor has been collected, cleaned and merged using Tableau in the LAD scope. 
+                            %br
+                            %br
+                            A set of user selection and preference options would dynamically influence the weights and corresponding factors related to ethnicity, restaurant density of direct or indirect competition, rent weight (according to user's acceptance interval). While the weights for other factors remain the initial value,
+                            their score for each factor would depend on each area's data being collected.
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/dQkvvbD0/Snipaste-2022-05-31-15-08-45.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/dQkvvbD0/Snipaste-2022-05-31-15-08-45.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title
+                            Lower Layer Super Output Arera (LSOA) Map Scope Level Recommendation
+                            %p
+                                Lower Layer Super Output Areas (LSOA) are a geographic hierarchy designed to improve the reporting of small area statistics in England and Wales. The LSOA map scope (2011 Edition) contains 34,753 LSOA areas in the United Kingdom, while for the recommendation system, only England and Wales would be taken into account.
+                                The LSOA areas have been filtered before presenting to users, as one LAD contains multiple LSOAs, after selecting a LAD area, the user can reach the next stage through interacting with the LSOAs within the selected LAD.
+                                %br
+                                %br
+                                This view would take into consideration the same data and their factors compared to LAD (while the employment statistics is missing) and taken into the same algorithm to calculate the recommendation score for each LSOA area for the selected LAD.
+                                Data related to each factor has been collected, cleaned and merged using Tableau in the LSOA scope. 
+                                %br
+                                %br
+                                In addition to functions influencing the weights compared to last stage, this stage focuses more on the agglomeration and diffusion factor. In which when the system determines agglomeration with other similar restaurants (In terms of category) is the optimal strategy,
+                                areas with more selected category restaurants would be recommended with a higher score in comparison with those having more diverted ethnic themes. Usually agglomeration occurs when an ethnic restaurant requires fixed customer source (ethnic customers) in a relative lower acceptance by
+                                non-ethnic customers, so that agglomerating with other similar restaurants can ensure stable consumer base from the same ethnicity, however with the cost of intense competition from direct competitors.
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/LhKxMY5j/Snipaste-2022-05-31-15-09-29.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/LhKxMY5j/Snipaste-2022-05-31-15-09-29.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title
+                            Restaurant Clusters in LSOA
+
+        .row.row-cols-1.row-cols-md-2.g-4{:style => "width: 90%; position: relative;margin: auto;"}
+
+            
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative;"}
+                    %a{:href => "https://i.postimg.cc/qkXPTkLw/Snipaste-2022-05-31-15-12-35.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/qkXPTkLw/Snipaste-2022-05-31-15-12-35.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Restaurant Location in Cluster
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/nFfhdcL1/Snipaste-2022-05-31-15-13-22.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/nFfhdcL1/Snipaste-2022-05-31-15-13-22.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Nearby Feature Locations
+
+        .row.row-cols-1.row-cols-md-4.g-4{:style => "width: 90%; position: relative;margin: auto;"}
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/Wsprn8y4/Snipaste-2022-05-31-15-05-39.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/Wsprn8y4/Snipaste-2022-05-31-15-05-39.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title
+                            Data views
+                            %p  
+                                Both the LAD and Restaurant Cluster scope provide different views in addition to the default map views (Heatmap and Density map) to present diverted data for each scope. The user can select the view to present in the control panel for each map scope and Tableau API would update its viz window and return to Rails.
+                                %br
+                                %br
+                                For LAD scope, bar charts are provided for user to analyse the statistics regarding Population (Population, Median Age Population and Median Age Population Growth Rate) and Ethnicity Percentage of each area, so that the area with either the largest population / population median age / growth rate or the largest
+                                proportion of user's interest is visualised and interactable. The Ethnicity related figure would automatically or dynamically adjust the sorting field of ethnicity according to current user's restaurant category (Eg, if user selects Chinese Restaurant, then the LAD areas would be sorted using Asian Percentage).
+                                Another form of map would be provided - that is the cluster map regarding to all factors, restaurant category structure and rent price and house price factor. This would present areas of similarities when considering all or specific factors.
+                                %br
+                                %br
+                                    For Restaurant in Cluster scope, another view of restaurant category structure for each cluster in the form of Pie chart is provided. Hence, the user can intuitively perceive the allocation and proportion of the selected restaurant category or other categories in each cluster, and select the one suitable.
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative;"}
+                    %a{:href => "https://i.postimg.cc/DwfPMjVP/234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/DwfPMjVP/234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Tips for User Option
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/SNfGV0PK/1234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/SNfGV0PK/1234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Selection of an Area
+
+            .col-sm-3.mb-4
+                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/08S37YKQ/1234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/08S37YKQ/1234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title
+                            Explore Nearby Locations
+
+
+
+                            
