@@ -168,28 +168,39 @@
                                     For Restaurant in Cluster scope, another view of restaurant category structure for each cluster in the form of Pie chart is provided. Hence, the user can intuitively perceive the allocation and proportion of the selected restaurant category or other categories in each cluster, and select the one suitable.
 
             .col-sm-3.mb-4
-                .card.h-100.section{:style => "width: 100%; position: relative;"}
+                .card.section{:style => "width: 100%; position: relative;"}
                     %a{:href => "https://i.postimg.cc/DwfPMjVP/234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
                         %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/DwfPMjVP/234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title Tips for User Option
+                        %h5.card-title
+                            Tips for User Option
+                            %p  
+                                When user selections have been passed to Rails, it would generate a notification tip regarding user's selection, its risk level, existing market competiveness, suggestions on business strategies, etc. These suggestions are considered according to: User's total acceptance (Food acceptance provided by user, Ethnic Restaurant Theme and Country of Origin acceptance),
+                                Market competitor of selected price segment, selected price segment and resulting location strategy.
 
             .col-sm-3.mb-4
-                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                .card.section{:style => "width: 100%; position: relative; "}
                     %a{:href => "https://i.postimg.cc/SNfGV0PK/1234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
                         -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
                         %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/SNfGV0PK/1234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title Selection of an Area
+                        %h5.card-title
+                            Selection of an Area
+                            %p  
+                                In the LAD and LSOA scope, when an area is selected, the side window would pop up and display features of the selected area compared to others, detailed information about the area size, population, restaurant structures inside. The feature fields are calculated and collected through comparing the area's normalised fields with others, 
+                                if a normalised field with positive proportional relationship with recommendation score (larger the value is, the higher recommendation score would it be) and is equal or larger than 0.8 (meaning that it is has 80 or higher value in the range of global lowest and highest value), it would be selected. Vice versa, a normalised field with
+                                negative proportional relationship with recommendation score (Eg, House price and Rent price in this case) and equal or less than 0.2, it would be a feature of the area.
 
             .col-sm-3.mb-4
-                .card.h-100.section{:style => "width: 100%; position: relative; "}
+                .card.section{:style => "width: 100%; position: relative; "}
                     %a{:href => "https://i.postimg.cc/08S37YKQ/1234.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
                         -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
                         %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/08S37YKQ/1234.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
                     .card-body
                         %h5.card-title
-                            Explore Nearby Locations
+                            Explore Places
+                            %p  
+                                The user can also explore locations in the whole UK in this view, provided with a high-street map (from Ordnance Survey) all over UK for user to explore, and two search bars for user to either access the nearby feature location function, or search for specific restaurant category nearby a provided area.
 
 
 
