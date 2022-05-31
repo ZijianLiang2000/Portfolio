@@ -92,7 +92,10 @@
                                 %br
                                 In addition to functions influencing the weights compared to last stage, this stage focuses more on the agglomeration and diffusion factor. In which when the system determines agglomeration with other similar restaurants (In terms of category) is the optimal strategy,
                                 areas with more selected category restaurants would be recommended with a higher score in comparison with those having more diverted ethnic themes. Usually agglomeration occurs when an ethnic restaurant requires fixed customer source (ethnic customers) in a relative lower acceptance by
-                                non-ethnic customers, so that agglomerating with other similar restaurants can ensure stable consumer base from the same ethnicity, however with the cost of intense competition from direct competitors.
+                                non-ethnic customers, so that agglomerating with other similar restaurants can ensure stable consumer base from the same ethnicity, however with the cost of intense competition from direct competitors. This scope also features the segmentation of restaurant price segment through the income related statistics.
+                                As there are no data collected directly indicating an area's average restaurant price range, only fields related to the local coumminity's power of consumption or income that reflects the common customs or practices for food consumption in terms of price segment. Hence, it is decided that
+                                a lower price segment can be established in areas of all income levels (calculated normalised income value compared to other areas in the same LAD) with the low to medium level income areas being the sweet spot, while expensive and very-expensive price-segment restaurants can only be established
+                                in areas with high or very high income, as very small demand would be produced in lower income area.
 
             .col-sm-3.mb-4
                 .card.h-100.section{:style => "width: 100%; position: relative; "}
@@ -102,16 +105,32 @@
                     .card-body
                         %h5.card-title
                             Restaurant Clusters in LSOA
+                            %p
+                                After a LSOA area is selected by the user, the view of restaurant clusters would be presented. This view would have all restaurants in the selected area be clustered according to their locations, so that neighbours of restaurants can be collected together for user to analyse the most suitable
+                                detailed area to emphasize in. Tableau would have restaurants in the area be clustered with the number of cluster be set to 5 and categorised with annotations and different colours.
+                                %br
+                                %br
+                                Each cluster would be recommended according to their number of same or different category restaurants according to location strategy. The user can click on the upper button to view over the list of existing restaurants (limited to 10) in the cluster,
+                                with their names, price levels, ratings and address provided, as well as the average price and rating calculated. A side bar would pop up and show the list of restaurants and detailed information, with a background Google map showing the area map.
 
         .row.row-cols-1.row-cols-md-2.g-4{:style => "width: 90%; position: relative;margin: auto;"}
-
             
             .col-sm-3.mb-4
                 .card.h-100.section{:style => "width: 100%; position: relative;"}
                     %a{:href => "https://i.postimg.cc/qkXPTkLw/Snipaste-2022-05-31-15-12-35.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
                         %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/qkXPTkLw/Snipaste-2022-05-31-15-12-35.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title Restaurant Location in Cluster
+                        %h5.card-title
+                            Restaurant Location in Cluster
+                            %p
+                                When the user selects a restaurant cluster, the scope would zoom into the detail of restaurant locations inside the cluster. In this view, if there is one or exists more direct competing restaurants (same category), then their customer reviews would be extracted and listed with rating and time. Then, an example review would be extracted
+                                from the review list and put into an Aspect-based semantic analysis to calculate the customer's attitude towards its food, service, price and ambience. Initially, this feature was planned to analyse all the reviews for each restaurant, and result in an average customer semantic attitude on each perspective, however, due to the %un-familiarity 
+                                implementing Python script on Rails, this cannot be applied but demonstrated with ASBA on a single example review.
+                                %br
+                                %br
+                                Moreover, the recommendation scores for restaurants in this scope would be calculated and presented in the form of "Recommendation intensity" surrounding a restaurant. In which, according to location strategy: If agglomeration, then restaurants with same or containing same category would be recommended with score of 50, and intensity would be displayed on the map.
+                                If diffusion, then the other-category restaurants would have score of 50 and with the same intensity displayed, while the same-category restaurants would only contain score of 0 and show no intensity surrounding. The user can click on one existing restaurant's location and select that as the final location. This reason for not implementing
+                                a location selection strategy to click on any location on map is due to Tableau's lack of support in such function and time constraint. The selected restaurant location would be the final selection, and scores would be averaged in the LAD and LSOA recommendation score provided to the user, which would all be stored in the database as selection history.
 
             .col-sm-3.mb-4
                 .card.h-100.section{:style => "width: 100%; position: relative; "}
@@ -119,7 +138,14 @@
                         -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
                         %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/nFfhdcL1/Snipaste-2022-05-31-15-13-22.png", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title Nearby Feature Locations
+                        %h5.card-title
+                            Nearby Feature Locations
+                            %p
+                                In each map scope, where map interactions involve area (containing LAD level names or coordinates) or locations (coordinates) are supported with the feature to explore feature locations nearby: including  Arts and Entertainment, Business and Professional Services, Community and Government, Dining and Drinking, Event, Health and Medicine, Landmarks and Outdoors, Retail, Sports and Recreation, Travel and Transportation. The selected options are Arts and Entertainment, Dining and Drinking, Education (within Community and Government category), Retail, Landmarks and Outdoors and Travel and Transportation.
+                                FourSquare API would help return all nearby locations of mentioned categories with their detailed information including popularity, price level, distance from location and rating, and the view would have them displayed in cards form. Likewise, the retrieved locations and selected location would also be plotted on the Google iframe map as marks. If the user click on one, then its details and distance to the selected location would be displayed as a tooltip.
+                                %br
+                                %br
+                                Furthermore, a control panel is provided for the user to control how locations are displayed, including how they are filtered and sorted. A Javascript function would handle the logic of filtering and then sorting everytime a change has been made in either selection of filtering or sorting.
 
         .row.row-cols-1.row-cols-md-4.g-4{:style => "width: 90%; position: relative;margin: auto;"}
             .col-sm-3.mb-4
