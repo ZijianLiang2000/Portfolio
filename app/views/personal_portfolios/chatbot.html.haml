@@ -4,49 +4,133 @@
         
         .card#card_select{:style => "color: black;margin: auto;padding: 10px;width: 90%; height: 100%;"}
             .card-body    
-                %h4 Chatbot
+                %h4
+                    NLP Airport Ticket Booking Chatbot
                 %p
-                    Location Recommendation System for Restaurant Business Location Decision-Making in England and Wales: Hierarchal Recommendation System for Restaurant Business Location Decision-Making
-                    in England and Wales: 
+                    This project mainly aims to build a functional chatbot that can communicate with users for the purpose of airport ticket booking task.
                     %br
                     %br
-                    Designed a system using Ruby on Rails and Tableau to cohort user options and preferences of
-                    planned restaurant business with factors of supply and demand of market, geo-demographic and business competition
-                    and agglomeration approaches of restaurant segments in UK areas (LAD, LSOA) in macro and micro map scopes
-                    through data retrieval, analysis, calculation and visualization to provide quantified comparability on successfulness of
-                    areas for user restaurant options and insights on their correlations with neighboring featured places
+                    A functional chatbot contains 3 components: Intent Classification component which recognizes user's enquiry sentences to correspond to which specific topic prepared or an unrelated topic; Name Entity Recognition component which extracts useful information from user sentences and Dialogue Flow Management component that controls the logical flow of conversation between chatbot and user.
+                    %br
+                    %br
+                    The dataset being implemented as the intent dataset for the model to learn is the 
+                    %a{:href => "https://www.kaggle.com/datasets/hassanamin/atis-airlinetravelinformationsystem", :style=>"color: inherit;outline: 0;", :target => "_blank"}
+                        ATIS Airline Travel Information System
+                    from Kaggle that provides sample user message contents and associated intents to train a classifier. The Name Entity Recognition component utilises Spacy's pre-trained model to identify standard categories in user text, including Names, Locations, Time, etc. The Dialogue Flow Management implements a combination of 
+                    Pre-trained ML and Heuristic methodology to deal with conversation flow between user and chatbot for the purpose of ticket booking task with fixed progress stages.
 
-        .row.row-cols-1.row-cols-md-3.g-4{:style => "width: 80%; position: relative;margin: auto;"}
+
+        .row.row-cols-1.row-cols-md-1.g-4{:style => "width: 80%; position: relative;margin: auto;"}
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative;"}
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/1XKwGQyP/topo-3.gif", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/zD9fdjHr/Intent-Classification.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "NLP", :src => "https://i.postimg.cc/zD9fdjHr/Intent-Classification.png", :style => "width: 100%;object-fit: cover;"}
                     .card-body
-                        %h5.card-title Classification on EEG Movement Imagery
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title
+                            NLP Intent Classification
+                            %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://www.kaggle.com/code/brianleung2020/nlp-experiments-component-1/notebook'", :target => "_blank", :style => 'z-index: 2;position: relative;' }
+                                %i.fab.fa-kaggle
+                        %span.badge.rounded-pill.bg-success Individual Role
                         %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
-            .col-sm-3.mb-4
-                .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_335657-1995.jpg?t=st=1653941705~exp=1653942305~hmac=e793dd06753c98c3781c2b7c0e7246978ce69e288fcaf2d0db048e5219684c9c&w=900", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
-                    .card-body
-                        %h5.card-title NLP Chatbot for Airline Travel Bookings
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
-                        %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %br            
+                        %p
+                            The intents for the project are designed to contain the conversational topics covering the booking purpose of the chatbot and related subjects related to air travel.
+                            This would include: Greetings and Goodbye, Ticket Booking, Airline intent and a Redo Intent. In which each sample intent dataset would consist of sample sentences and responses.
+                            So that a chatbot Intent classification component being trained with the dataset can recognise user's corresponding intention when provided with a sentence and respond to it correspondingly.
+                            %br
+                            %br
+                            The Greetings and Goodbye are responsible for the start and end of a usual conversation flow, where the chatbot would respond in the same way. The Ticket Booking intent would consist of all
+                            user sample sentences either containing departure and destination locations (For an instance, "I would like to book a ticket from LA to New York") or with only intentions to book a ticket without specifying such locations (Eg: I want to book a ticket).
+                            The process for this intent would not only consist of the model recognising the intent and responding with a fixed pattern (such as "No problem, we will be checking it for you"), but also followed up by more heuristic conversations
+                            to have user information retrieved (Dialogue Flow Management component). The user can collect information for a given airline through the Airline intent, as the dataset would be similar to the Booking intent, while
+                            the booking intention would be converted into airline enquiries (Eg: What is the airline for the flight from London to New York?). The Redo Intent is designed for users to modify previous provided information in the booking progress,
+                            including name, locations, email address, etc. This intent would consist of sample sentences for model to learn from, which provides sentence patterns on modification of previous step submittions (Such as "I want to change the departure and destination").  
+                            Applying with heuristic actions from DFM component, the system can redo proceeded stages and reach back to the intended one for updated information.
 
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_23-2147750784.jpg?t=st=1653942434~exp=1653943034~hmac=e0ff8613060c4c0d1f76d633b6050d1c4f3c1182916a4efd847e87c3c52c6259&w=1380", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/ZKTXkwsN/NER.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/ZKTXkwsN/NER.png", :style => "width: 100%;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title
-                            Health Fitness Application
-                            %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://github.com/sian-burch/HealthApplication'", :target => "_blank"}
-                                %i.bi.bi-github
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title Name Entity Recognition
+                        %span.badge.rounded-pill.bg-success Individual Role
                         %br
+                        %br            
+                        %p
+                            The Name Entity Recognition (NER) component implemented for the project mostly relies on Spacy to extract real-life object that can be identified, such as names, places, organizations and date time. Spacy supports these classes in default, and for the project,
+                            the booking intent collects user requirements and personal data to ensure booking is valid.
+                            %br
+                            %br
+                            This component mainly functions in the Ticket booking and Airline checkup intent, where the system is required to extract information or ask for user information from user sentence. For an instance, user's departure and destination for the ticket being booked, the date 
+                            and time of the ticket, name of booking, airfare type. For name entities that spacy do not support in default, we are required to provide sample sentences as use case scenarios and the specific words to extract and category to pair with.
+                            %br
+                            %br
+                            Once this component is completed and compatible with the Intent classification component, the system can recognise user's intention from sentences and extract required information for filling in the form to work out the booking process.                          
+
+            .col-sm-3.mb-4
+                .card.h-100{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/gGHpSB4G/123456.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/gGHpSB4G/123456.png", :style => "width: 100%;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Dialogue Flow Management
+                        %span.badge.rounded-pill.bg-success Team Role
                         %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %br            
+                        %p
+                            To start the chatbot session, the user can type in a sentence to greet the chatbot such as
+                            “hello” which will trigger the chatbot to classify the ‘greeting’ intent and respond back to the
+                            user with the correct response. However, to engage the chatbot, the user isn’t limited to
+                            starting the conversation by saying “hello”. There are many different stages the user can
+                            engage in the conversation such as asking the chatbot to book a flight, which falls into the
+                            ‘booking’ intent, or asking the chatbot for its name, which falls into the ‘name’ intent.
+                            There is an expectation for the ‘booking’ intent, as it consists of many stages to work with
+                            such as asking the user for their name and the time/date to create the booking. Therefore,
+                            the user can only be redirected to the start of the booking intent when any stages in the
+                            intent is asked for.
+                            %br
+                            %br
+                            As the chatbot's main feature is based on the ‘booking’ intent, the dialogue flow manager is
+                            designed to follow the route of booking status, date status, name status and email status. In
+                            order words, within the ‘booking’ intent, the chatbot firstly asks the user the departure &
+                            destination which is followed by the date of the travel, then the name of the user and the
+                            user's email address. For each of these stages, the chatbot would only be able to move onto
+                            the next stage/question if only the user's response is accepted (they follow the
+                            requirements of the question, and the format is correct). If the user response is not
+                            accepted, the chatbot would loop back and ask the question again.
+                            All these fields must be inputted by the user once the intent has been engaged for the user
+                            to be able to ask the chatbot any other intents. The inputs for each stage can be modified
+                            inside the intent, before the booking process ends, when the original field is provided to the
+                            chatbot in further stages.
+                            %br
+                            %br
+                            The dialogue flow manager is also set up in a way that the chatbot can only fallback at most
+                            one stage at a time for a given intent. For example, if the user has given their name and a
+                            date, the user is only able to change the date by the chatbot classifying the ‘redo’ intent, but
+                            is unable to change their name. At the end of each stage/intent, the ‘redo’ intent cannot be
+                            called.
+
+            
+            .col-sm-3.mb-4
+                .card.h-100{:style => "width: 100%; position: relative;"}
+                    .card-body
+                        %h5.card-title Deploying the chatbot on Flask
+                        %span.badge.rounded-pill.bg-success Team Role
+                        %br
+                        %br            
+                        %p
+                            Flask is a micro web framework used for creating API’s in python. It is also another type of
+                            REST API which allows the intractability with RESTful services and the scalability of complex
+                            applications. It allows machine learning models to be quickly deployed onto a web
+                            application running locally or on the cloud.
+                            %br
+                            %br 
+                            Flask is the most desirable out of the other options, including MLflow as it can be easily
+                            integrated into Python, which is the main language used to develop machine learning
+                            models. Python itself is such a versatile language which consists of many libraries and
+                            packages which makes flask more pleasant to use as these libraries can be directly used
+                            alongside flask. It also allows the development of a web application due to it featuring the
+                            RESTful API with a concise backend which consists of the machine learning model, which
+                            allows the model to be effectively deployed onto a frontend within a web application. These
+                            advantages seem extremely desirable and therefore we will go with Flask to serve our
+                            model.
+

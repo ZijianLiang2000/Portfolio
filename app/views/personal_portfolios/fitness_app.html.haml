@@ -4,49 +4,161 @@
         
         .card#card_select{:style => "color: black;margin: auto;padding: 10px;width: 90%; height: 100%;"}
             .card-body    
-                %h4 Fitness
+                %h4
+                    Health Fitness Application
                 %p
-                    Location Recommendation System for Restaurant Business Location Decision-Making in England and Wales: Hierarchal Recommendation System for Restaurant Business Location Decision-Making
-                    in England and Wales: 
+                    The proposed project is a web application with the aim to improve both mental and physical health of
+                    users and for them to build positive daily habits. The project will produce a fully functional online
+                    application, which allows users to sign up and join as part of their community. During these challenging
+                    times, our schedules and social lives have been hindered due to the nationwide lockdown, thus it is
+                    important to have a one-stop website that allows the user to tackle all the repercussions of this. The
+                    web application will be comprised of:
                     %br
+                    %br• A questionnaire that asks how the user is feeling on a daily or weekly basis (which ever the user
+                    decides) and allocates tasks, decided upon by a recommendation algorithm, for the user to do
+                    which fits around their schedule in an attempt to try to help.
                     %br
-                    Designed a system using Ruby on Rails and Tableau to cohort user options and preferences of
-                    planned restaurant business with factors of supply and demand of market, geo-demographic and business competition
-                    and agglomeration approaches of restaurant segments in UK areas (LAD, LSOA) in macro and micro map scopes
-                    through data retrieval, analysis, calculation and visualization to provide quantified comparability on successfulness of
-                    areas for user restaurant options and insights on their correlations with neighboring featured places
+                    %br• Weather and music APIs that are detailed below in the Constraints section
 
-        .row.row-cols-1.row-cols-md-3.g-4{:style => "width: 80%; position: relative;margin: auto;"}
+        .row.row-cols-1.row-cols-md-1.g-4{:style => "width: 80%; position: relative;margin: auto;"}
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative;"}
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/1XKwGQyP/topo-3.gif", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/KjDY9k6S/12345.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "NLP", :src => "https://i.postimg.cc/KjDY9k6S/12345.png", :style => "width: 100%;object-fit: cover;"}
                     .card-body
-                        %h5.card-title Classification on EEG Movement Imagery
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title
+                            User Daily Questionnaire
+                        %span.badge.rounded-pill.bg-success Individual Role
                         %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
-            .col-sm-3.mb-4
-                .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_335657-1995.jpg?t=st=1653941705~exp=1653942305~hmac=e793dd06753c98c3781c2b7c0e7246978ce69e288fcaf2d0db048e5219684c9c&w=900", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
-                    .card-body
-                        %h5.card-title NLP Chatbot for Airline Travel Bookings
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
-                        %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %br            
+                        %p
+                            To have the algorithm functioning within the web application, users should first select or
+                            search their current location to be taken into the algorithm and the initial User Daily
+                            Questionnaire's location variable after the creation of the sign-up questionnaire. Then the
+                            users should input their personal physical data and preferences on relevant features of fitness
+                            exercise. These data will generate the Body mass index (BMI) value (based on the BMI formula
+                            taking in weight and age parameter), the recommended daily steps (based on the users'
+                            athletic level and age parameter). With the original preference scores acquired from the signup form, an initial instance of user daily questionnaire would be generated inheriting those
+                            score parameters from the former. These scores will be passed to the recommendation
+                            algorithm using content-based filtering and be compared with each activity's own scores in
+                            order to calculate and sort the activities with the most similarity scores compared with user
+                            scores. The activities with top similarities will then be considered determining on whether the
+                            users' local city's weather is applicable for each activity to be held. If not, then those activities
+                            would be filtered out from the recommendation list. Eventually, a list of activities would be
+                            recommended to users.
+                            %br
+                            %br  
+                            To bring about the recommendation algorithm to be functional and progressive in a daily
+                            basis, the user daily questionnaire becomes the key of achieving the core value of usercentralisation. A dynamic recommendation algorithm should not only take users' initial and
+                            momentary preference into consideration, but also extract the continuous shifting habits of
+                            the users. When a new day begins, the users are suggested to fill in a specialised user daily
+                            questionnaire for that day. With the new form filled in, the new daily preference scores will
+                            be brought into algorithm, replacing the scores from the previous day to generate new scores.
+                            These new scores would be put into calculation and compared with scores from each activity.
+                            Then, new recommended activities list would be generated for the user.
+
 
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_23-2147750784.jpg?t=st=1653942434~exp=1653943034~hmac=e0ff8613060c4c0d1f76d633b6050d1c4f3c1182916a4efd847e87c3c52c6259&w=1380", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/74pFkfDQ/Health-App-Diagram.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/74pFkfDQ/Health-App-Diagram.png", :style => "width: 100%;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title
-                            Health Fitness Application
-                            %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://github.com/sian-burch/HealthApplication'", :target => "_blank"}
-                                %i.bi.bi-github
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title Use of GEMs and APIs (User activity preference feature, Spotify and OpenWeather API)
+                        %span.badge.rounded-pill.bg-success Individual Role
                         %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %br            
+                        %p
+                            A spider chart (built using the "highcharts gem") which shows a comparison between a user's initial
+                            preference scores is used for the recommendation algorithm and their most recent scores from
+                            the last daily questionnaire they completed. This chart will show after the user has filled in
+                            their daily questionnaire and is on the homepage (when logged-in). It will allow for users to
+                            see how their preferences have changed throughout their time using the application.
+                            %br
+                            %br
+                            The weather API used in the project would be a factor influencing the recommendation
+                            algorithm. It is implemented to inquire current weather conditions of a specific city passed
+                            36
+                            through API query. To achieve this, the team decided on using the OpenWeather API [16]. It
+                            provides free subscription on “Current Weather Data” service supporting over 200,000 cities
+                            globally. To enable users to input their local city name or search from provided list of options,
+                            the “check_weather” view utilises “Select2” gem generating a customizable select box with
+                            support for searching. Typical city names in UK are provided as a list for users to select from
+                            or searched. To remain this function in a light-weighted manner, the provided city list does
+                            not include all 200,000 cities supported by the API. If the user's current city name is not listed
+                            inside, they can also directly type in their current city name in the search bar. These
+                            operations collaborating with the JavaScript code generate and passe the “location” value to
+                            the “show_weather” function in the “user_daily_questionnaire” controller by clicking on
+                            “Search” button.
+                            The API_Key used for this API is defined as an Environment Variable stored locally. With the
+                            “net-http” gem, API request can be sent in the format of the provided syntax taking in city
+                            name parameter and API_Key. If the API response is empty, user will be redirected back to
+                            the root path or returning to the “check_weather” view to search again depending on current
+                            sign-up status. If the API is responding correctly, and the “main” variable in “weather” is
+                            returned validated correctly, the city name variable would be passed to the existing user daily
+                            questionnaire or the one to be created, which sets the current location for user. With the
+                            location being set after signing up, when accessing the daily exercise recommendation view,
+                            the controller could determine which activities being enabled or vice versa. This is done
+                            according to its conditional statement taking in “location” in user daily questionnaire and
+                            inquiring the current weather status of that location to be compared with the corresponding
+                            “weather_restricted” Boolean field for each activity instance. So that for an instance, some
+                            outdoor activities would be filtered out due to inadequate weather before recommending to
+                            users. If the user is willing to switch to a different location, click on the “Change Location” tab
+                            on the navigation bar to redirect to the “check_weather” view.
+                            %br
+                            %br
+                            The Music API is intended to cooperate with the user preference scores, to recommend suitable
+                            playlists for user's current day fitness preference. This is achieved by using the Spotify API. The
+                            Spotify API contains an entry to search for playlists according to “category_id”, in which the website
+                            can input fixed “category_id” covering each case of user's preference score.
+                            %br
+                            %br
+                            • The sprint team needs to apply for Spotify developer account for the website application. After
+                            registration the developer applied for a new app project, Spotify would then provide a Client ID and
+                            a Client Secret ID for each developer. To access Spotify database, an (temporary) access token is
+                            required to respond to developer's request. To do so, developers should access their Spotify
+                            credentials and authorize the web app. Then, Spotify requires user to fill in a White-listed address
+                            for redirection after authentication. The address is inputted as “https://example.com/callback”. The
+                            first attempt was to receive the access token by encoding the URI, our client id and the client secret
+                            id in specific formats for requesting type (access) token, which is the Implicit Grants flow approach.
+                            Then accessing the new encoded URI would require developers to agree terms and conditions from
+                            Spotify. A new URL would appear containing mainly the actual access token, its type and expiry time.
+                            Using the token inside the “recommend_playlist” within home controller, to apply for API response
+                            with a “category_id” in a rest-client get request would return a list of playlists of this category.
+                            %br
+                            %br
+                            • However, the access token follows OAuth2 guidelines. It is not a permanent key for developers to
+                            request API response and is designed to expire every hour four security purpose. In order to access
+                            Spotify's API database, it is necessary to dynamically to update the access token every time a user
+                            uses the Music API provided, which is the Authorization Code flow approach. To achieve this, another
+                            approach has taken place. To get the latest access key, a refresh token is also needed. It is done
+                            bymaking a POST request by “HTTParty” to Spotify API's token endpoint with a grand type of
+                            “refresh_token” as well as the user client ID and client secret ID. This starts by returning to
+                            application of the generated URL code with the encoded redirect URL and client credentials. The
+                            starting steps remain the same as previously, but when developers encode the URI, they should not
+                            request a “token” but response type as “code” (an authorization code that can be exchanged for an
+                            access token). It would not return a token this time, but a code used to request for the access token
+                            and a refresh token. Then, access these two fields by making a POST request to the Spotify Accounts
+                            service with parameters including client ID, client secret ID, grand_type, authorization code and
+                            redirect URI. Eventually, Spotify API would return the refresh token. With this token set as an
+                            environment variable, it can be inputted into requesting access token every time users access the
+                            controller action.
+                            %br
+                            %br
+                            • As the controller receives an up-to-date access token every time the API request is executed, the
+                            website can now normally request for API response by providing entries and variables needed. The
+                            endpoint for returning list of playlists according to provided category ID is set, and there are some
+                            fixed “category_id” options set to be passed to the controller's API request based on the user's
+                            preference score stored in the User Daily Questionnaire (eg: If physicality_score > 3, category_id =
+                            ”workout” or “rock”, etc. according to a random shuffle). The returned data can be shuffled and pass
+                            one random playlist to recommend user which is suitable for user's activities recommended. The
+                            returned JSON data can be transformed into a random track being shuffled and filtered variables
+                            include all the playlist's redirect URL, cover image, description, popularity, tracks within the playlist
+                            to be shown in the “recommend_playlist” view.
+                            %br
+                            %br
+                            • Another additional function added in root path is the fixed popular playlists provided and are
+                            identical to the activities in database seed. It is requested by inputting “playlist_id” of each Spotify
+                            playlist and returning the requested playlist's redirect URL, cover image, description, popularity,
+                            tracks within the playlist to be shown in the “spotify_playlist” view.
+
+            

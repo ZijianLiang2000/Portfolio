@@ -4,49 +4,129 @@
         
         .card#card_select{:style => "color: black;margin: auto;padding: 10px;width: 90%; height: 100%;"}
             .card-body    
-                %h4 EEG
+                %h4
+                    EEG Movement Imagery Classification - Dataset Preprocess
+                    %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://github.com/ZijianLiang2000/AI_CW_PreProcess/tree/main'", :target => "_blank", :style => 'z-index: 2;position: relative;' }
+                        %i.bi.bi-github
                 %p
-                    Location Recommendation System for Restaurant Business Location Decision-Making in England and Wales: Hierarchal Recommendation System for Restaurant Business Location Decision-Making
-                    in England and Wales: 
+                    This project mainly focuses on pre-processing EEG imagery data and building different machine learning models that can classify the brain activity by learning to understand neurological data (EEG data) that depicts different functions of humans.
+                    It is expected to bring more exposure to the application of machine learning in the medical field so that this area of research is opened more so that the lives of patients can be improved.
                     %br
                     %br
-                    Designed a system using Ruby on Rails and Tableau to cohort user options and preferences of
-                    planned restaurant business with factors of supply and demand of market, geo-demographic and business competition
-                    and agglomeration approaches of restaurant segments in UK areas (LAD, LSOA) in macro and micro map scopes
-                    through data retrieval, analysis, calculation and visualization to provide quantified comparability on successfulness of
-                    areas for user restaurant options and insights on their correlations with neighboring featured places
+                    When someone has an EEG, there are (in this case) 64 electrodes which are put in specific positions on the patient's head, which means different electrodes can record the activity from different areas of the brain. When analysing EEG records, you can figure out what specific areas of the brain are being stimulated for a certain task or action. As each electrode represents a certain area of the brain, the names of the brain location are labelled using alphabetical abbreviations.
+                    For the project we used EEG Motor Movement/Imagery Dataset (Goldberger, 2000) which consisted of 64-channel EEG recordings from 109 subjects with 14 runs for each subject in EDF format which is standard file format designed to store medical time series data. The dataset was conducted by running different experiments such as the subject opening and closing the fist/feet and imagining the opening and closing of the fist/feet for one minute which is recorded by all 64 electrodes placed on the scalp. These experiments are each repeated 3 times, with an experiment run on opening and closing of the eyes that runs for one minute. Each channel is represented by an electrode, with each channel consisting of 9760 samples for a duration of one minute.
+                    %br
+                    %br
+                    My role in the project is to understand the meaning of data recordings, having them converted from EDF format to timeframe data format, then visualising into different forms (Spectrogram and Mel-Spectrogram) and aggregated according to requirements of extracting brain activity relationship from spatial information (EEG channels located in the same area) for further procedures of training and testing by the whole team using Supervised and Contrastive Learning.
 
-        .row.row-cols-1.row-cols-md-3.g-4{:style => "width: 80%; position: relative;margin: auto;"}
+        .row.row-cols-1.row-cols-md-1.g-4{:style => "width: 80%; position: relative;margin: auto;"}
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative;"}
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/1XKwGQyP/topo-3.gif", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/FNQ3ZNqt/EEG-Channel-Data-Segmentation-for-each-subject.jpg", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "EEG", :src => "https://i.postimg.cc/FNQ3ZNqt/EEG-Channel-Data-Segmentation-for-each-subject.jpg", :style => "width: 100%;object-fit: cover;"}
                     .card-body
-                        %h5.card-title Classification on EEG Movement Imagery
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title EEG Channel Data Segmentation
+                        %span.badge.rounded-pill.bg-success Individual Role
                         %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
-            .col-sm-3.mb-4
-                .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Image referenced from: https://www.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_11668333.htm#query=chatbot&position=4&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-vector/dialog-with-chatbot-artificial-intelligence-reply-question-tech-support-instant-messaging-hotline-operator-ai-assistant-client-bot-consultant-vector-isolated-concept-metaphor-illustration_335657-1995.jpg?t=st=1653941705~exp=1653942305~hmac=e793dd06753c98c3781c2b7c0e7246978ce69e288fcaf2d0db048e5219684c9c&w=900", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
-                    .card-body
-                        %h5.card-title NLP Chatbot for Airline Travel Bookings
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
-                        %br
-                        %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %br            
+                        %p
+                            Splitting the EEG data-frame (1-min) of each channel (total of 64 channels, correspondents demonstrated in “eeg_data.to_dataframe()”) inside each subject (total of 109 subjects) to 12 segments, each segment contains a time frame of 5 seconds. Each segment is transformed into a librosa melspectrogram visual form and stored as “[subject_index][channel_index][segment_index]”. To achieve this objective, the raw EEG data for each channel within a subject being segmented into 5 seconds (or about 813 data samples), each can be grouped together studied by ML models in the form of Mel-spectrograms. Firstly, combining all of the segments inside the channel for the individual subject (e.g., [‘Channel 1, Segment 1‘, ‘Channel 1, Segment 2‘, …, ‘Channel 1, Segment 12‘]).
+                            and then stacking all the combined channels 1-64 on top of each other to create a composite graph that represents the EEG data recorded by all 64 channels in the same 5-second time period (individual channels) as demonstrated in "Figure – Stacking up all channels of same segment".
+                            %br
+                            %br
+                            The composite graph is initially attempted to be rescaled, reshaped and fed into the model with the size of 23168 * 23168 pixels and 13800 * 13800 pixels to keep original details of each segment images, however, they all exceed the “decompression bomb” input warning limit and severely decreases training efficiency. Consequently, composite images are scaled down to size (256, 256) as a square image to be inputted into the model for training, evaluation and testing considering the optimal balance of efficiency and features of data samples to be extracted and trained with. As a result, 12 composite images for each subject or a total of 1308 images for all 109 subjects would be generated. This means that for each experiment subject, 12 composite images, each representing the signals of 64 channels in the same 5-second segment, are provided to the model as datasets.
 
             .col-sm-3.mb-4
                 .card.h-100{:style => "width: 100%; position: relative; "}
-                    -# Referenced from: https://www.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_1657600.htm#page=3&query=fitness&position=3&from_view=search
-                    %img.card-img-top{:alt => "Restaurant image", :src => "https://img.freepik.com/free-photo/sports-equipment-around-apple-energy-bar_23-2147750784.jpg?t=st=1653942434~exp=1653943034~hmac=e0ff8613060c4c0d1f76d633b6050d1c4f3c1182916a4efd847e87c3c52c6259&w=1380", :style => "width: 100%;height: 15vw;object-fit: cover;"}/
+                    %a{:href => "https://i.postimg.cc/HWsdg8Jf/EEG.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/HWsdg8Jf/EEG.png", :style => "width: 100%;object-fit: cover;"}/
                     .card-body
-                        %h5.card-title
-                            Health Fitness Application
-                            %button.btn.btn-outline-dark.btn-sm{:type => "button", :onclick => "location.href='https://github.com/sian-burch/HealthApplication'", :target => "_blank"}
-                                %i.bi.bi-github
-                        %span.badge.rounded-pill.bg-success Team Coursework Project
+                        %h5.card-title Decisions of Visualisation - Spectrogram and Mel-Spectrogram
+                        %span.badge.rounded-pill.bg-success Individual Role
+                        %br
+                        %br            
+                        %p
+                            The visualisation form of Spectrograms are selected as they are usually worked out in audio, linguistics, sonar, radar, etc. related visualisation and analysis tasks to represent signal strength over time, which is suitable for such category of time series dataset.
+                            %br
+                            %br
+                            Each segmented timeframe is initially visualised as Mel-spectrogram (Left) for further preprocessing and training. It would convert each segmented EEG signal intensities into frequency and have them plotted against the 5-second time period. While Mel-spectrograms only extracts frequencies perceivable by human ears so that some frequency data samples converted from EEG would be filtered. To have a visualised form containing data of all frequency range, Spectrogram (Right) is also tested with same experiments and compared with performance of Mel-spectrogram, as current task is not related to audio processing or human-ear functional demands and we do not want to lose details of EEG data in the process of conversion.
+
+            .col-sm-3.mb-4
+                .card.h-100{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/ysB3Rngs/Stack-Segments-for-each-channel.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/ysB3Rngs/Stack-Segments-for-each-channel.png", :style => "width: 100%;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Stacking up all EEG images of same segment for all 64 channels
+                        %span.badge.rounded-pill.bg-success Individual Role
+                        %br
+                        %br            
+                        %p
+                            One of the objectives of this application is to narrow down the time frame required for each channel to record a subject’s EEG raw signal data to about 5 seconds, with a sampling frequency of 160Hz and 9760 samples for 64 channels for each subject. 
+                            %br
+                            %br
+                            To achieve this objective, the raw EEG data for each channel within a subject being segmented into 5 seconds (or about 813 data samples), each can be grouped together studied by ML models in the form of Mel-spectrograms. As shown in the "Figure - Stacking up all channels of same segment" in Appendix B, through stacking up each same timeframe segments of EEG data of all 64 channels (e.g., [‘Channel 1, Segment 1‘, ‘Channel 2, Segment 1‘, …, ‘Channel 64, Segment 1‘] is a composition of segment 1 for all 64 channels, meaning the “0 - 5 second” period data for all the channels), a composite graph is generated representing EEG data recorded by all 64 channels in the same 5-second time period (of the common segment). The composite graph is initially attempted to be rescaled, reshaped and fed into the model with the size of 23168 * 23168 pixels and 13800 * 13800 pixels to keep original details of each segment images, however, they all exceed the “decompression bomb” input warning limit and severely decreases training efficiency. 
+                            %br
+                            %br
+                            Consequently, composite images are scaled down to size (256, 256) as a square image to be inputted into the model for training, evaluation and testing considering the optimal balance of efficiency and features of data samples to be extracted and trained with. As a result, 12 composite images for each subject or a total of 1308 images for all 109 subjects would be generated. This means that for each experiment subject, 12 composite images, each representing the signals of 64 channels in the same 5-second segment, are provided to the model as datasets. So that ideally, a 5-second data (regardless of this segment's belonging within the raw data set's 60-second time frame) recording of the participant tested on with 64 electrodes enables the model to predict whether the subject is opening or closing their eyes.
+
+            .col-sm-3.mb-4
+                .card.h-100{:style => "width: 100%; position: relative;"}
+                    %a{:href => "https://i.postimg.cc/jTp7xRRW/Merge-Channels.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "EEG", :src => "https://i.postimg.cc/jTp7xRRW/Merge-Channels.png", :style => "width: 100%;object-fit: cover;"}
+                    .card-body
+                        %h5.card-title Aggregating the 63-channel EEG dataset into 13 channels
+                        %span.badge.rounded-pill.bg-success Individual Role
+                        %br
+                        %br            
+                        %p
+                            The 64 EEG Channels are categorised into 13 groups: “Fp, Af, F, Ft, Fc, T, C, Tp, Cp, P, Po, O, I”, each of the channel groups correspond to a certain area of the brain. Each channel within a channel group identifies a more specific locational distribution within the brain area of its category. To undertake higher requirements on analysing the relationship between brain signals of distinctive area and their corresponding functional responsibilities with the experiment of opening and closing eyes, explorations and experiments are performed to aggregate all the channels within the same channel group as a whole and average out all the raw EEG data values of channel in a group, resulting a time series (9760 data samples / about 60 seconds) of average signal values for all channels in each group. Therefore, time series data of 64 individual channels can be encapsulated into 13 channel groups being represented for specific brain areas. Furthermore, the same procedure is performed for the 13 channel groups, in which each segment would be separated out (representing the data for all channels within this group for that segment) for each channel and stored with its categories listed. 
+                            %br
+                            %br
+                            As a result, 17004 images for each segment of each channel considering all the subjects would be generated in the form of a spectrogram.The same procedure is performed on the segmented images of each channel group for each subject. So that for each experiment subject, 12 composite images, each representing the signals of 13 grouped electrodes representing a certain brain region with corresponding functional  (compared to 64 individual electrodes) in the same 5-second segment is provided to the model as datasets.
+                            The differences between the grouped 13-channel composite images compared to the 64-channel composite image are the depth of brain region segmentation details being encapsulated, and the strength of signal data aggregated for subdivided and united segments.
+                            %br
+                            %br
+                            To improve the performance of the model classifying imageries of EEG movements under the limitation of the expensive resource of existing labelled EEG imagery data for opening and closed eyes, semi-supervised learning is adopted to improve performance through both labelled and unlabeled data. EEG data from other experiments are also pre-processed as an unlabeled sample in this case. Thus, EEG imagery data from experiment 3 to 14 are treated as datasets without labels, so that after being grouped, segmented and stacked up in the same way as previously, 15700 stacked up spectrogram images are generated.
+
+            .col-sm-3.mb-4
+                .card.h-100{:style => "width: 100%; position: relative; "}
+                    %a{:href => "https://i.postimg.cc/X3FSXb6r/123.png", :style=>"text-decoration: none;color: inherit;outline: 0;", :target => "_blank", :title => "View full image", :alt => "View full image"}
+                        %img.card-img-top{:alt => "Restaurant image", :src => "https://i.postimg.cc/X3FSXb6r/123.png", :style => "width: 100%;object-fit: cover;"}/
+                    .card-body
+                        %h5.card-title Further Procedures and Results
+                        %span.badge.rounded-pill.bg-success Team Role
                         %br
                         %br
-                        %a.btn.btn-primary.stretched-link{:href => "#"} View
+                        %p
+                            Preprocess on experiment pairs - The preprocess pipelines would be worked out for experiment 1 and 2 (Opening and closing eyes) and experiment 3 and 4 (Opening and closing fist) for classification separately. Data in each experiment pair would be segmented and stacked for all 64-channel and then repeated with configuration generating 13-channel aggregated data to be segmented and stacked. These stacked images would be stored in pairs and assigned to the next stage.
+                            %br
+                            %br
+                            Preprocess on all experiments - To have contrastive learning applied which firstly trains the unsupervised part of model with as much visualised imagery data as possible, EEG data for all experiments are put into the pre-process pipeline to be only segmented and visualised for each 5-second segment for all channels. The generated images would all be stored under one single directory without any labels.
+                            %br
+                            %br
+                            Six different experiments was conducted which used ViT and SimCLR with EEG data that was composed of baseline task and task 1 & 2.
+
+                            We had used two data types for the experiments, with one data type consisting of EEG data that had all the 63 channels, and the other data type which consisted of the original 63 channels aggregated into 13 channels that correspond to different locations of the brain. 
+
+                            These experiments were conducted firstly to contrast the performance of ViT and SimCLR, secondly to see if data aggregation would provide any varying results, and thirdly to see if the models would perform similarly when trained with data from other tasks.
+
+                            Experiment 6 was conducted using data from task 1 & 2 in order to compare the results of SimCLR of the baseline and the new dataset and to see if the unsupervised learning can maintain the same results when training on a new dataset. 
+                            %br
+                            %br
+                            The accuracy retrieved from this experiment was 55.7%, which is much lower than the accuracy obtained on experiment 5 which used the baseline dataset. 
+
+                            The accuracy suggests the model has been randomly guessing the classes due to the classification being binary. However, when comparing the loss functions, this experiment has a higher loss value of 0.08, compared to the loss value of 0.05 from experiment 5. 
+
+                            The low accuracy of SimCLR on training on task 1&2 dataset is very likely properable due to the higher loss value it achieved. The loss value represents the summation of the errors the model had made on the training set, therefore the higher the loss, the lower the performance of the model is.
+                            %br
+                            %br
+                            After training the models again on the new dataset that consisted of the correct spectrogram format, all models have performed significantly better than the original experiments.
+
+                            This is due to spectrograms being more suitable to visualise and interpet the EEG data than mel-spectrigrams, which is typically used for visulaising frequencies that humans can hear such as music.
+
+                            SimCLR was able to outperform ViT when trained on task 1 & 2 dataset (opening and closing fists)
+
+
+
+%p{:style => "color: white; margin: auto;width: 100%;padding: 10px;"}
+    %a{:target => "_blank", :href => "https://www.physionet.org/content/eegmmidb/1.0.0/"} Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., ... & Stanley, H. E. (2000). PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation [Online]. 101 (23), pp. E215–e220.
